@@ -10,8 +10,6 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
-
 // winsock
 #include <winsock2.h>
 #include <ws2tcpip.h>

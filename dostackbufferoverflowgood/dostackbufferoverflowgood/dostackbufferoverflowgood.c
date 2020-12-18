@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "dostackbufferoverflowgood.h"
 
-#define LHOST NULL		// 0.0.0.0
-#define LPORT "31337"	// hack the planet
-#define RECVBUFSIZE 58623	// causes "JMP ESP" opcodes to be compiled in during
-						// handleConnection()'s "SUB ESP,n"
+#define LHOST NULL		    // 0.0.0.0
+#define LPORT "31337"	    // hack the planet
+#define RECVBUFSIZE 58623   // causes "JMP ESP" opcodes to be compiled in during
+						    // handleConnection()'s "SUB ESP,n"
 
-int __cdecl main()
+int __cdecl main(void)
 {
 	// [+] socket setup
 	// borrowed from MSDN - https://msdn.microsoft.com/en-us/library/windows/desktop/ms738545%28v=vs.85%29.aspx
@@ -150,14 +150,13 @@ void __cdecl handleConnection(void *param) {
 		memmove_s(recvbuf, sizeof(recvbuf), line_start, recvbufUsed);
 	}
 	closesocket(clientSocket);
-	return;
 }
 
-int __cdecl doResponse(SOCKET clientSocket, char *clientName) {
+int __cdecl doResponse(SOCKET clientSocket, char *msg) {
 	char response[128];
 
 	// Build response
-	sprintf(response, "Hello %s!!!\n", clientName);
+	sprintf(response, "%s\n", msg);
 
 	// Send response to the client
 	int result = send(clientSocket, response, strlen(response), 0);

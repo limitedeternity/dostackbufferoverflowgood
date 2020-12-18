@@ -237,3 +237,7 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 # --- END VISUAL STUDIO
+
+dostackbufferoverflowgood_images/Thumbs.db
+
+.DS_Store
